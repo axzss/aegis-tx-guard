@@ -87,6 +87,13 @@ curl -s -X POST https://<your-render-url>/guard \
        "data":"0x095ea7b3...","value":"0"}'
 ```
 
+> **Verifying from a proxied sandbox/VM:** plain `curl` (HTTP/1.1) can
+> stall for 10–150 s on any POST with a body when the egress proxy
+> delays HTTP/1.1 request bodies — this looks like the endpoint hanging
+> but the server answers in ~1.5 s. Use `curl --http2` (or a client
+> that negotiates HTTP/2) to verify. GETs are unaffected. See
+> `STATUS.md` ("Live /guard hang — investigation") for the evidence.
+
 ## Files
 
 - `circuits/guard.circom` — the 6-check binding circuit (13 constraints).
