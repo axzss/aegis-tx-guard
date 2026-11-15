@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: aegis-tx-guard
+    env: node
+    plan: free
+    repo: https://github.com/axzss/aegis-tx-guard
+    buildCommand: npm install
+    startCommand: node src/server.mjs
+    healthCheckPath: /health
+    envVars:
+      - key: RPC_URL
+        value: https://bsc-dataseed.binance.org/
+      - key: KURIER_NETWORK
+        value: mainnet
+      - key: NODE_ENV
+        value: production
